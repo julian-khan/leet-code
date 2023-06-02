@@ -20,7 +20,7 @@ class Solution:
                 if k == 0:
                     return res
             i -= 1
-            
+        
         
 
         
