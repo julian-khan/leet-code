@@ -7,7 +7,9 @@ class Solution:
         nums.sort()
 
         for i in range(len(nums) - 2):
-            if i > 0 and nums[i] == nums[i-1]:
+            if nums[i] > 0:
+                continue
+            elif i > 0 and nums[i] == nums[i-1]:
                 continue
 
             left, right = i + 1, len(nums) - 1
