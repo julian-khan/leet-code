@@ -5,13 +5,14 @@ class Solution:
         res = [0] * len(temperatures)
         stack = []
 
-        stack.append((temperatures[0], 0))
+        #Using the stack to only store indexes to reduce memory usage
+        stack.append(0)
 
         for i in range(1, len(temperatures)):
-            while stack and temperatures[i] > stack[-1][0]:
-                targetIndex = stack.pop()[1]
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                targetIndex = stack.pop()
                 res[targetIndex] = i - targetIndex
             
-            stack.append((temperatures[i], i))
+            stack.append(i)
 
         return res
