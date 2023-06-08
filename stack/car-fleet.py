@@ -7,15 +7,9 @@ class Solution:
 
         stack = []
         for pos, spd in posAndSpeed:
-            if stack:
-                t1 = (target - pos) / spd
-
-                p2, s2 = stack[-1]
-                t2 = (target - p2) / s2
-
-                if t1 <= t2:
-                    continue
-            stack.append((pos, spd))
+            time = (target - pos) / spd #speed = distance / time formula
+            if stack and stack[-1] >= time:
+                continue
+            stack.append(time)
             
-
         return len(stack)
