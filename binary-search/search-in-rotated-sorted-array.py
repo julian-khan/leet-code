@@ -1,5 +1,34 @@
 # https://leetcode.com/problems/search-in-rotated-sorted-array/
 
+#Approach 1 - use nested conditional statements to determine the partition of the array to continue
+#binary search on
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+
+        left, right = 0, len(nums) - 1
+
+        while left <= right:
+            mid = (left + right) // 2
+
+            if nums[mid] == target:
+                return mid
+            
+            if nums[mid] < nums[right]:
+                if target < nums[mid] or target > nums[right]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if target < nums[left] or target > nums[mid]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+                    
+        return - 1
+
+#Approach 2 - find the minimum element in the array (the rotation index) and then use
+#binary search on the relevant partition of the array
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         minIndex = 0 #index, value
