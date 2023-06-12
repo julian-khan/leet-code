@@ -1,5 +1,7 @@
 # https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
 
+#Time complexity O(n), space complexity O(1)
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -7,28 +9,17 @@
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        frontPointer = backPointer = head
 
-        counter = 0
+        backPointer = dummy = ListNode(0, head)
+        frontPointer = head
+
         for i in range(n):
             frontPointer = frontPointer.next
-            counter += 1
 
-        if not frontPointer and counter == n:
-            return head.next
-        if not frontPointer:
-            return None
-        if not frontPointer.next and n == counter + 1:
-            return head.next
-
-        
         while frontPointer:
-
-            if not frontPointer.next:
-                backPointer.next = backPointer.next.next
-                break
-
             frontPointer = frontPointer.next
             backPointer = backPointer.next
-        
-        return head
+
+        backPointer.next = backPointer.next.next
+
+        return dummy.next
