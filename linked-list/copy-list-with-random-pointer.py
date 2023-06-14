@@ -29,4 +29,4 @@ class Solution:
             origToCopied[curr].random = origToCopied.get(curr.random, None)
             curr = curr.next
         
-        return origToCopied.get(head)
+        return origToCopied[head]
